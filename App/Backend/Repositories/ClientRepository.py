@@ -1,5 +1,5 @@
 from typing import List, Optional
-from OnSiteServerApplication.Backend.App.Models.ClientModel import ClientModel
+from App.Backend.Models.ClientModel import ClientModel
 
 
 class ClientRepository:
@@ -51,6 +51,17 @@ class ClientRepository:
         with ClientModel.get_connection() as conn:
             cursor = conn.execute(
                 f"SELECT * FROM {ClientModel.table_name} WHERE shutdown = ?", (int(shutdown),)
+            )
+            rows = cursor.fetchall()
+            field_names = [description[0] for description in cursor.description]
+            return [ClientModel(**ClientModel._deserialize_row(dict(zip(field_names, row)))) for row in rows]
+
+    @staticmethod
+    def get_clients_by_site_id(site_id: int) -> List[ClientModel]:
+        """Retrieve all clients associated with a given site ID."""
+        with ClientModel.get_connection() as conn:
+            cursor = conn.execute(
+                f"SELECT * FROM {ClientModel.table_name} WHERE site_id = ?", (site_id,)
             )
             rows = cursor.fetchall()
             field_names = [description[0] for description in cursor.description]

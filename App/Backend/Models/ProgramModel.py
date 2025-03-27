@@ -1,7 +1,7 @@
 from typing import Optional
 
-from OnSiteServerApplication.Backend.App.Models.Model import Model
-from OnSiteServerApplication.Backend.App.Server.ScoopFunctions import ScoopFunctions
+from App.Backend.Models.Model import Model
+#from App.Backend.Server.ScoopFunctions import ScoopFunctions
 
 
 class ProgramModel(Model):
@@ -16,8 +16,9 @@ class ProgramModel(Model):
 
 
     def find_available_version(self):
-        version_number = ScoopFunctions.getSoftwareVersionNumber(self.name)
-        self.available_version = version_number
+        #FIXME this will just take teh input from the server
+        #version_number = ScoopFunctions.getSoftwareVersionNumber(self.name)
+        #self.available_version = version_number
         self.save()
 
 

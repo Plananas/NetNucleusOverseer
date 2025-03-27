@@ -20,7 +20,7 @@ class Model:
     @classmethod
     def get_connection(cls):
         """Get a connection to the database."""
-        return sqlite3.connect('clients.db')
+        return sqlite3.connect('overseer.db')
 
     @classmethod
     def create_table(cls):

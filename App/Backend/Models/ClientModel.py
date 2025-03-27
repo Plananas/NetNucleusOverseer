@@ -1,8 +1,8 @@
 from typing import List, Optional
 
-from OnSiteServerApplication.Backend.App.Models.Model import Model
-from OnSiteServerApplication.Backend.App.Models.ProgramModel import ProgramModel
-from OnSiteServerApplication.Backend.App.Repositories.ProgramRepository import ProgramRepository
+from App.Backend.Models.Model import Model
+from App.Backend.Models.ProgramModel import ProgramModel
+from App.Backend.Repositories.ProgramRepository import ProgramRepository
 
 
 class ClientModel(Model):
@@ -44,7 +44,7 @@ class ClientModel(Model):
 
     def get_installed_programs(self) -> List[ProgramModel]:
         program_repository = ProgramRepository()
-        installed_programs = program_repository.get_program_by_client_id(self.uuid)
+        installed_programs = program_repository.get_programs_by_client_uuid(self.uuid)
 
         return installed_programs
 

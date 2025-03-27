@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Site Dashboard{% endblock %}
 
 {% block content %}
 <style>
@@ -15,10 +15,15 @@
   <div class="row">
     <div class="col-12">
       <div class="jumbotron text-dark mb-4">
-        <h1 class="display-4">Dashboard</h1>
+        <h1 class="display-4">Site Dashboard</h1>
+        <p class="lead">{{ site.nickname or site.uuid }}</p>
       </div>
     </div>
   </div>
+
+  <!-- Compute online clients count using Jinja filter -->
+  {% set online_clients = clients | selectattr("shutdown", "equalto", 0) | list %}
+  {% set online_client_count = online_clients | length %}
 
   <!-- Main Content Row -->
   <div class="row">

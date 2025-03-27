@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 class UserRepository:
     def __init__(self):
         """Initialize the UserRepository with a SQLite database path."""
-        self.db_path = 'clients.db'
+        self.db_path = 'overseer.db'
         self._initialize_db()
 
     def _initialize_db(self):
